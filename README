@@ -1,2 +1,5 @@
 TelNet Calculator
 
+Dependencies:
+    lager - https://github.com/basho/lager.git
+    ranch - https://github.com/extend/ranch.git
