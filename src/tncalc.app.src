@@ -1,0 +1,12 @@
+{application, tncalc,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { tncalc_app, []}},
+  {env, []}
+ ]}.
