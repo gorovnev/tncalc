@@ -20,3 +20,6 @@ compile: $(SOURCE_DIR)/*.erl
 
 clean:
 	rebar clean
+	rm -rf ./_rel
+rel:
+	deps/relx/relx

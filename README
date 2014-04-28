@@ -3,3 +3,10 @@ TelNet Calculator
 Dependencies:
     lager - https://github.com/basho/lager.git
     ranch - https://github.com/extend/ranch.git
+    relx
+
+How to build:
+1. Compile 
+    make compile
+2. Make release:
+    deps/relx/relx

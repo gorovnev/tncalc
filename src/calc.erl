@@ -6,10 +6,9 @@ test() ->
 
 parse( String ) ->
     {ok, Tokens, _EndLine} = calc_lexer:string( String ),
-    io:format( "Tokens:~p~n", [Tokens] ),
     calc_parser:parse( Tokens ).
 
-calculate( Number ) when is_integer(Number) -> Number;
+calculate( Number ) when is_integer(Number);is_float(Number) -> Number;
 calculate( {{Op}, Var1, Var2} ) ->
     case Op of
         '+' -> calculate(Var1) + calculate(Var2);
