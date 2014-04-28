@@ -5,7 +5,7 @@ LEXER_NAME=$(CALC_NAME)_lexer
 PARSER_NAME=$(CALC_NAME)_parser
 SOURCES=$(wildcard $(SOURCE_DIR)/*.erl)
 
-default: clean generate test
+default: generate compile
 
 #$(SOURCE_DIR)/$(LEXER_NAME).erl : $(SOURCE_DIR)/$(LEXER_NAME).xrl
 generate:
@@ -23,3 +23,7 @@ clean:
 	rm -rf ./_rel
 rel:
 	deps/relx/relx
+
+run:
+	_rel/bin/tncalc
+
