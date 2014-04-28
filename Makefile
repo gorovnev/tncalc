@@ -1,6 +1,7 @@
 ERL=erl -I -pa ebin -noshell -eval
 SOURCE_DIR=src
 CALC_NAME=calc
+RELX=deps/relx/relx
 LEXER_NAME=$(CALC_NAME)_lexer
 PARSER_NAME=$(CALC_NAME)_parser
 SOURCES=$(wildcard $(SOURCE_DIR)/*.erl)
@@ -12,6 +13,9 @@ generate:
 	$(ERL) 'leex:file("$(SOURCE_DIR)/$(LEXER_NAME)"), halt().'
 	$(ERL) 'yecc:file("$(SOURCE_DIR)/$(PARSER_NAME)"), halt().'
 
+init:
+	rebar get-deps
+
 test:
 	rebar eunit
 
@@ -21,8 +25,12 @@ compile: $(SOURCE_DIR)/*.erl
 clean:
 	rebar clean
 	rm -rf ./_rel
-rel:
-	deps/relx/relx
+
+relx:
+	cd deps/relx && make && cd ../..
+
+rel: 
+	$(RELX)
 
 run:
 	_rel/bin/tncalc

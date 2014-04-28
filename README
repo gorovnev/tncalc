@@ -3,10 +3,13 @@ TelNet Calculator
 Dependencies:
     lager - https://github.com/basho/lager.git
     ranch - https://github.com/extend/ranch.git
-    relx
+    relx  - https://github.com/erlware/relx.git
 
-How to build:
-1. Compile 
-    make compile
-2. Make release:
-    deps/relx/relx
+Commans:
+	make init  - get dependencies
+	make       - compile
+	make relx  - make relx (if you have no relx)
+	make rel   - make tncalc release
+	make run   - run TelNet Calculator
+	make clean - clean project
+
