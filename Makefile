@@ -17,6 +17,7 @@ init:
 	rebar get-deps
 
 test:
+	make generate
 	rebar eunit
 
 compile: $(SOURCE_DIR)/*.erl

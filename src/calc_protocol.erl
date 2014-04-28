@@ -22,13 +22,16 @@ loop(Socket, Transport) ->
             lager:info( "Got data:~p", [Data] ),
             Resp = case calc:parse( Data ) of
                 {ok, ParseTree} ->
-                    calc:calculate( ParseTree );
+                    case calc:calculate( ParseTree ) of
+                        {ok, Number} -> io_lib:format( "~p", [Number] );
+                        {error, Err} -> io_lib:format( "Error:~p", [Err] )
+                    end;
                 {error, Err} ->
                     lager:error( "Input error~p", [Err] ),
                     "input error"
             end,
-            lager:info( "Calc result:~p", [Resp] ),
-            Transport:send(Socket, io_lib:format("~p~n", [Resp])),
+            lager:info( "Calc result:~s", [Resp] ),
+            Transport:send(Socket, lists:append( Resp, "\n")),
             loop(Socket, Transport);
         _ ->
             ok = Transport:close(Socket)
